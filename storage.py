@@ -3,22 +3,25 @@
 
 
 
-#from filestorage import FileStorage
-#from memorystorage import MamoryStorage
-a = [ 1, 2, 3, 4 ]
-b = [ "a", "b", "c", "d" ]
+from filestorage import FileStorage
+from memorystorage import MemoryStorage
+from jsonstorage import JsonStorage
 
 class StorageProxy:
-    pass
-#  def __init__(self,storageType = "memory"):
-#    if storageType == "memory":
-#      self.realStorage = a
-#    elif storageType == "file":
-#      self.realStorage = b
-      
+
+    def __init__( self, storageType = "memory" ):
+        
+        if storageType == "memory":
+            self.realStorage = MemoryStorage()
+        elif storageType == "file":
+            self.realStorage = FileStorage()
+        elif storageType == "json":
+            self.realStorage = JsonStorage()
+        else:
+            raise AttributeError( "Wrong storage type" )
   
-    def __getattr__(self,name):
-        if name == "load":
-            return f"Hi, Veronica!!! You try to get attr load!"
+    def __getattr__( self, name ):
+        if( name == "load" ):
+            return self.realStorage.load
         if name == "save":
-            return f"Hi, Veronica!!! You try to get attr save!"
+            return self.realStorage.save

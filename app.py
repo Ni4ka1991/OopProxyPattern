@@ -2,13 +2,11 @@
 
 from storage import StorageProxy
 
+a = [ "1", "2", "3", "4" ]
+
+storage = StorageProxy( "json" )   # in memory
+#storage = StorageProxy("file")       # in file
 
 
-storage = StorageProxy()   # in memory
-print(storage.load)
-print(storage.save)
-#print(storage.load())
-
-#storage = StorageProxy("file")   # in file
-#storage.save("Test Data")
-#print(storage.load())
+storage.save( "bu-bu-bu" )
+print(storage.load())
