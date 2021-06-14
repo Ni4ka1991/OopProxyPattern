@@ -1,3 +1,7 @@
+
+#filestorage
+
+
 class FileStorage:
  def __init__(self):
    self.name = "data.txt"
